@@ -498,8 +498,7 @@ html.light .card-glow {
 @utility img-hover-overlay {
   overflow: hidden;
 }
-  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-}
+
 html.dark .terminal-badge {
   background-color: rgb(192 193 255 / 0.05);
   border: 1px solid rgb(192 193 255 / 0.2);
