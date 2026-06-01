@@ -29,8 +29,8 @@ function Portfolio() {
     <Layout activePath="/">
       {/* ---------- Hero ---------- */}
       <section>
-        <Container className="grid grid-cols-1 md:grid-cols-[1fr_480px] gap-12 md:gap-20 items-start py-[60px]">
-          <div className="min-w-0">
+        <Container className="grid grid-cols-1 md:grid-cols-[1fr_480px] gap-12 md:gap-x-20 md:gap-y-0 items-start py-[60px]">
+          <div className="min-w-0 md:col-start-1 md:row-start-1">
             <div className="inline-flex items-center gap-2.5 terminal-badge px-3.5 py-1.5 mb-6 rounded-md">
               <span className="relative flex w-2 h-2">
                 <span className="absolute inline-flex w-full h-full rounded-full bg-green-500 opacity-60 animate-ping" />
@@ -40,52 +40,51 @@ function Portfolio() {
                 $ whoami --location "Bangkok, Thailand"
               </span>
             </div>
-
-            <p
-              className="uppercase mb-2 text-on-surface-variant"
-              style={{
-                fontSize: '13px',
-                letterSpacing: '0.15em',
-              }}
-            >
-              Hi, I'm
-            </p>
-            <h1 className="font-headline-xl text-[64px] md:text-[88px] leading-[0.9] font-extrabold tracking-tighter text-white uppercase mb-3">
-              <span className="text-gradient-primary">Zwe Htet</span>
-              <br />
-              <span className="text-gradient-primary">Paing</span>
-            </h1>
-
-            <h2 className="font-headline-lg text-2xl md:text-3xl text-primary font-semibold tracking-tight uppercase mb-4">
-              AI / ML Engineer
-            </h2>
-
-            <div className="max-w-lg">
-              <p className="font-body-md text-lg md:text-xl text-on-surface leading-relaxed mb-3">
-                Focused on machine learning, NLP, and generative AI systems.
-                Building end-to-end pipelines for RAG and automated trading.
-              </p>
-              <p className="font-body-md text-on-surface-variant leading-loose">
-                With 5 years of hands-on experience across social media,
-                e-commerce, and crypto-fintech domains, I specialize in
-                developing end-to-end ML deployment solutions. I bridge
-                research and production.
-              </p>
-            </div>
           </div>
 
-          <div className="flex justify-center md:justify-end min-w-0 md:mt-10">
-            <div className="relative w-full h-[420px] overflow-hidden rounded-lg border border-white/10 bg-surface-container shadow-2xl ring-1 ring-primary/5">
+          <p
+            className="min-w-0 uppercase mb-2 text-on-surface-variant md:col-start-1 md:row-start-2"
+            style={{
+              fontSize: '13px',
+              letterSpacing: '0.15em',
+            }}
+          >
+            Hi, I'm
+          </p>
+
+          <h1 className="min-w-0 font-headline-xl text-[64px] md:text-[88px] leading-[0.9] font-extrabold tracking-tighter text-white uppercase mb-3 md:col-start-1 md:row-start-3">
+            <span className="text-gradient-primary">Zwe Htet</span>
+            <br />
+            <span className="text-gradient-primary">Paing</span>
+          </h1>
+
+          <h2 className="min-w-0 font-headline-lg text-2xl md:text-3xl text-primary font-semibold tracking-tight uppercase mb-4 md:col-start-1 md:row-start-4">
+            AI / ML Engineer
+          </h2>
+
+          <div className="min-w-0 max-w-lg md:col-start-1 md:row-start-5">
+            <p className="font-body-md text-lg md:text-xl text-on-surface leading-relaxed mb-3">
+              Focused on machine learning, NLP, and generative AI systems.
+              Building end-to-end pipelines for RAG and automated trading.
+            </p>
+            <p className="font-body-md text-on-surface-variant leading-loose">
+              With 5 years of hands-on experience across social media,
+              e-commerce, and crypto-fintech domains, I specialize in
+              developing end-to-end ML deployment solutions. I bridge
+              research and production.
+            </p>
+          </div>
+
+          <div className="flex justify-center md:justify-end min-w-0 md:col-start-2 md:row-start-3 md:row-span-3">
+            <div className="relative w-[320px] max-w-full overflow-hidden rounded-lg border border-outline-variant/30 bg-surface-container shadow-2xl ring-1 ring-primary/5 hover:scale-105 transition-transform duration-300 ease-out">
               <img
-                alt="Cinematic portrait of AI Engineer"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0-02eXLGL_8ACe8vetU-oxehdH3oEsunWDOYlDdBcn4Ly44qWO0z4mPVjRhkFsT0sZ8Mk_nSEkMbb27_yw1ppSZqb2h6UoD9M9QSDpkJJwHlT6meszoobUiLfn_dqDK2MtFP0kCX58G31vwGdQA3cLXfnDQDcHIWRrSo8wGgf90wMzvLIno8dnLFvV7FE7MpWte6RTDVOKuaRBccBLd_-NyPsBHyQ1qgGChDwY5OxJzt0A5q3E853pbMvwgnxtaHpNeQgEhdlJNg"
-                width="480"
-                height="420"
+                alt="Portrait of Zwe Htet Paing"
+                src="/profile.png"
+                width="320"
+                height="432"
                 loading="eager"
-                className="w-full h-full object-cover object-top grayscale hover:grayscale-0 transition-all duration-700 ease-in-out opacity-90 hover:opacity-100"
+                className="w-full h-auto"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-transparent pointer-events-none" />
-              {/* Subtle inner border highlight on top of the image. */}
               <div className="absolute inset-0 rounded-lg ring-1 ring-inset ring-white/5 pointer-events-none" />
             </div>
           </div>
@@ -107,7 +106,7 @@ function Portfolio() {
               { icon: 'psychology', title: 'ML & AI Frameworks', items: ['PyTorch', 'TensorFlow', 'Scikit-learn', 'Hugging Face', 'MLflow'] },
               { icon: 'temp_preferences_custom', title: 'Generative AI', items: ['Agents', 'LangChain', 'LangGraph', 'RAG', 'Vector Stores', 'OpenAI', 'Anthropic', 'Gemini'] },
               { icon: 'automation', title: 'Data & Automation', items: ['Apache Airflow', 'Prefect', 'n8n', 'FastAPI'] },
-              { icon: 'cloud', title: 'Cloud & DevOps', items: ['AWS', 'GCP', 'Docker', 'Terraform'] },
+              { icon: 'cloud', title: 'Cloud & DevOps', items: ['AWS', 'GCP', 'Docker', 'Terraform', 'Vercel', 'DigitalOcean'] },
               { icon: 'visibility', title: 'NLP & Computer Vision', items: ['NER', 'Sentiment Analysis', 'Speech Recognition', 'Object Detection', 'Recommendation'] },
             ].map((group) => (
               <div

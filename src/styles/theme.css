@@ -177,6 +177,16 @@
   75%, 100% { transform: scale(2); opacity: 0; }
 }
 
+/* Slow aurora drift for the body::before ambient backdrop. Combines a
+   gentle scale + lateral translate so the gradient's center slowly
+   shifts, giving the background a "living" quality without distracting
+   from the foreground content. Cancelled by prefers-reduced-motion. */
+@keyframes aurora-drift {
+  0%   { transform: scale(1)    translate(0%, 0%); }
+  50%  { transform: scale(1.08) translate(2%, -1.5%); }
+  100% { transform: scale(1.04) translate(-2%, 1.5%); }
+}
+
 /* ---------------------------------------------------------------------------
  * Base layer: radial-gradient body, fonts, antialiasing, selection, icons.
  * Matches Stitch's per-screen <style> blocks exactly.
@@ -306,7 +316,9 @@
 
   /* Ambient backdrop: a fixed, very low-opacity indigo glow anchored to
      the top of the viewport. Painted below all content so it doesn't
-     interfere with text legibility, but adds depth on long pages. */
+     interfere with text legibility, but adds depth on long pages.
+     Slow aurora-drift keyframe (see below) gives a subtle living quality
+     without distracting from the foreground. */
   body::before {
     content: '';
     position: fixed;
@@ -314,6 +326,9 @@
     pointer-events: none;
     z-index: 0;
     transition: background 0.2s ease;
+    transform-origin: 50% 0%;
+    will-change: transform;
+    animation: aurora-drift 36s ease-in-out infinite alternate;
   }
   html.dark body::before {
     background:
@@ -347,6 +362,16 @@
   }
   html.light ::selection {
     color: #0f0f0f;
+  }
+
+  /* Global motion-reduce opt-out: cancels the slow aurora drift on
+     body::before. The AnimatedBackground canvas component is independently
+     controlled by its own prefers-reduced-motion hook (useReducedMotion),
+     so this CSS rule only needs to cover the CSS-driven aurora. */
+  @media (prefers-reduced-motion: reduce) {
+    body::before {
+      animation: none;
+    }
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -467,6 +492,12 @@ html.light .card-glow {
 
 /* terminal-badge: $ whoami chip. */
 @utility terminal-badge {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+@utility img-hover-overlay {
+  overflow: hidden;
+}
   transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 html.dark .terminal-badge {

@@ -20,7 +20,7 @@ function Footer() {
     <footer className="border-t border-outline-variant/30 py-5">
       <Container className="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6">
         <p className="text-on-surface-variant font-label-caps text-[12px] tracking-[0.2em] text-center md:text-left">
-          © 2026 ZWE HTET PAING. ENGINEERED FOR INTELLIGENCE.
+          © 2026 ZWE HTET PAING | ALL RIGHTS RESERVED.
         </p>
         <ul className="flex gap-6 items-center">
           {SOCIAL_LINKS.map((link) => (

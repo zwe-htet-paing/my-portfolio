@@ -12,28 +12,17 @@ const NAV_LINKS = [
 /**
  * Sticky top navigation, anchored to the global 1200px content container.
  *
- * Stitch emits two distinct header variants:
- *  - **Portfolio / Projects** — h-16 (64px), white/5 border, pill Resume
- *    button, gap-8 nav. Portfolio uses an `border-b border-primary`
- *    underline for the active link; Projects uses the same convention
- *    with its own active link.
- *  - **Contact** — h-20 (80px) on md+ (h-16 on mobile), outline-variant
- *    border, square Resume button (`rounded-lg` + primary-tinted
- *    shadow), gap-10 nav. Active link uses a `::after` underline
- *    pseudo-element.
- *
  * The outer <header> spans the full viewport width so the blurred
  * surface and bottom border paint edge-to-edge. The inner <Container
  * as="nav"> constrains the logo / links / Resume button to 1200px
  * max-width and applies the constant 24px horizontal gutter.
  *
- * Below `md` both variants collapse to a compact h-16 bar with a
- * hamburger menu that opens a full-width nav drawer.
+ * Below `md` the bar collapses to a compact h-14 layout with a hamburger
+ * menu that opens a full-width nav drawer.
  */
 function Header({ activePath }) {
   const { pathname } = useLocation()
   const current = activePath ?? pathname
-  const isContact = current === '/contact'
 
   const [menuOpen, setMenuOpen] = useState(false)
   const closeMenu = () => setMenuOpen(false)
@@ -62,73 +51,12 @@ function Header({ activePath }) {
     </button>
   )
 
-  // --- Portfolio / Projects variant ---------------------------------------
-  if (!isContact) {
-    return (
-      <>
-        <header className="nav-blur border-b border-white/5 fixed top-0 inset-x-0 z-50">
-          <Container
-            as="nav"
-            aria-label="Primary"
-            className="flex items-center justify-between h-14"
-          >
-            <Link
-              to="/"
-              className="font-headline-lg text-[15px] font-semibold text-on-surface tracking-tight hover:text-primary transition-colors truncate"
-            >
-              ZWEHTETPAING.DEV
-            </Link>
-
-            <ul className="hidden md:flex items-center gap-8">
-              {NAV_LINKS.map((link) => {
-                const isActive = current === link.to
-                return (
-                  <li key={link.to}>
-                    <Link
-                      to={link.to}
-                      onClick={closeMenu}
-                      aria-current={isActive ? 'page' : undefined}
-                      className={
-                        isActive
-                          ? 'text-on-surface font-label-code text-sm border-b border-primary'
-                          : 'text-on-surface-variant font-label-code text-sm hover:text-primary transition-colors duration-300'
-                      }
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                )
-              })}
-            </ul>
-
-            <div className="flex items-center gap-3">
-              <ThemeToggle />
-              <a
-                href="/resume.pdf"
-                download="Zwe-Htet-Paing-Resume.pdf"
-                className="hidden sm:inline-flex items-center gap-1.5 bg-primary text-on-primary font-label-code text-sm font-bold px-5 py-2 rounded-full hover:brightness-110 active:scale-95 transition-all"
-              >
-                Resume
-                <span className="material-symbols-outlined text-[16px] leading-none">
-                  download
-                </span>
-              </a>
-              {hamburgerButton}
-            </div>
-          </Container>
-        </header>
-
-        <MobileDrawer open={menuOpen} onClose={closeMenu} links={NAV_LINKS} current={current} />
-      </>
-    )
-  }
-
-  // --- Contact variant -----------------------------------------------------
   return (
     <>
       <header className="nav-blur border-b border-white/5 fixed top-0 inset-x-0 z-50">
         <Container
-          as="div"
+          as="nav"
+          aria-label="Primary"
           className="flex items-center justify-between h-14"
         >
           <Link
@@ -137,26 +65,29 @@ function Header({ activePath }) {
           >
             ZWEHTETPAING.DEV
           </Link>
-          <nav aria-label="Primary" className="hidden md:flex items-center gap-10">
+
+          <ul className="hidden md:flex items-center gap-8">
             {NAV_LINKS.map((link) => {
               const isActive = current === link.to
               return (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  onClick={closeMenu}
-                  aria-current={isActive ? 'page' : undefined}
-                  className={
-                    isActive
-                      ? 'text-primary font-label-code text-sm relative after:content-[""] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-primary'
-                      : 'text-on-surface-variant font-label-code text-sm hover:text-primary transition-colors duration-200'
-                  }
-                >
-                  {link.label}
-                </Link>
+                <li key={link.to}>
+                  <Link
+                    to={link.to}
+                    onClick={closeMenu}
+                    aria-current={isActive ? 'page' : undefined}
+                    className={
+                      isActive
+                        ? 'text-on-surface font-label-code text-sm border-b border-primary'
+                        : 'text-on-surface-variant font-label-code text-sm hover:text-primary transition-colors duration-300'
+                    }
+                  >
+                    {link.label}
+                  </Link>
+                </li>
               )
             })}
-          </nav>
+          </ul>
+
           <div className="flex items-center gap-3">
             <ThemeToggle />
             <a
