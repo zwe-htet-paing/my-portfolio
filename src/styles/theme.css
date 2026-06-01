@@ -1,0 +1,705 @@
+/* ===========================================================================
+ * Obsidian Developer Core — design tokens
+ *
+ * This file is the single source of truth for the design system. The values
+ * mirror the Google Stitch designs for project 7443188833512928909:
+ *   - Portfolio:  screens/25707caa9ebb4f0392fe902798373935
+ *   - Projects:   screens/dcd5dc751f4b4a14b3aae67cd93fe05e
+ *   - Contact:    screens/cb44ceea426d46bc80dd00d9c444f829
+ *
+ * Implemented as a Tailwind v4 @theme block so every existing utility class
+ * (bg-primary, text-on-surface, font-headline-xl, px-gutter, …) is generated
+ * directly from the token below — no separate config file required.
+ * =========================================================================== */
+
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+ * Design tokens. Values match Stitch's emitted tailwind.config.js and
+ * DESIGN.md frontmatter. Keep them in sync; if you change a value here,
+ * update DESIGN.md and vice-versa.
+ * --------------------------------------------------------------------------- */
+@theme {
+  /* ---------- Color: surface tiers (true dark) ---------- */
+  --color-background: #131313;
+  --color-on-background: #e5e2e1;
+  --color-surface: #131313;
+  --color-surface-dim: #131313;
+  --color-surface-bright: #393939;
+  --color-surface-container-lowest: #0e0e0e;
+  --color-surface-container-low: #1c1b1b;
+  --color-surface-container: #201f1f;
+  --color-surface-container-high: #2a2a2a;
+  --color-surface-container-highest: #353534;
+  --color-surface-variant: #353534;
+  --color-surface-tint: #c0c1ff;
+
+  /* ---------- Color: on-surface (text) ---------- */
+  --color-on-surface: #e5e2e1;
+  --color-on-surface-variant: #c7c4d7;
+  --color-inverse-surface: #e5e2e1;
+  --color-inverse-on-surface: #313030;
+
+  /* ---------- Color: primary (Electric Indigo) ---------- */
+  --color-primary: #c0c1ff;
+  --color-on-primary: #1000a9;
+  --color-primary-container: #8083ff;
+  --color-on-primary-container: #0d0096;
+  --color-inverse-primary: #494bd6;
+  --color-primary-fixed: #e1e0ff;
+  --color-primary-fixed-dim: #c0c1ff;
+  --color-on-primary-fixed: #07006c;
+  --color-on-primary-fixed-variant: #2f2ebe;
+
+  /* ---------- Color: secondary ---------- */
+  --color-secondary: #b9c8de;
+  --color-on-secondary: #233143;
+  --color-secondary-container: #39485a;
+  --color-on-secondary-container: #a7b6cc;
+
+  /* ---------- Color: tertiary (warm accent, sparingly used) ---------- */
+  --color-tertiary: #ffb783;
+  --color-on-tertiary: #4f2500;
+  --color-tertiary-container: #d97721;
+  --color-on-tertiary-container: #452000;
+
+  /* ---------- Color: outlines + error ---------- */
+  --color-outline: #908fa0;
+  --color-outline-variant: #464554;
+  --color-error: #ffb4ab;
+  --color-on-error: #690005;
+  --color-error-container: #93000a;
+  --color-on-error-container: #ffdad6;
+
+  /* ---------- Spacing (8px base scale, aligned with Stitch designMd) ---------- */
+  --spacing: 0.5rem;
+  --spacing-1: 0.5rem;                  /* 8px */
+  --spacing-2: 1rem;                    /* 16px */
+  --spacing-3: 1.5rem;                  /* 24px — Tailwind gap-gutter (Stitch container padding) */
+  --spacing-4: 2rem;                    /* 32px */
+  --spacing-6: 3rem;                    /* 48px */
+  --spacing-8: 4rem;                    /* 64px */
+  --spacing-12: 6rem;                   /* 96px */
+  --spacing-15: 7.5rem;                 /* 120px */
+  --spacing-16: 8rem;                   /* 128px */
+  --spacing-gutter-mobile: 1.25rem;     /* 20px (mobile container padding) */
+  --spacing-gutter: 1.5rem;             /* 24px (Stitch gutter — constant across breakpoints) */
+  --spacing-stack-sm: 0.5rem;           /* 8px */
+  --spacing-stack-md: 1rem;             /* 16px */
+  --spacing-stack-lg: 2.5rem;           /* 40px */
+  --spacing-stack-xl: 4rem;              /* 64px */
+  --spacing-section: 6rem;              /* 96px (Stitch mb-24) */
+  --spacing-section-lg: 8rem;           /* 128px (Stitch mb-32) */
+  --container-portfolio: 87.5rem;       /* 1400px — global content max-width */
+
+  /* ---------- Radius (Stitch: DEFAULT 2, lg 4, xl 8, full 12) ---------- */
+  --radius-sm: 0.125rem;                /* 2px */
+  --radius-DEFAULT: 0.125rem;           /* 2px */
+  --radius-md: 0.25rem;                 /* 4px */
+  --radius-lg: 0.25rem;                 /* 4px */
+  --radius-xl: 0.5rem;                  /* 8px */
+  --radius-2xl: 0.5rem;
+  --radius-3xl: 0.75rem;                /* 12px (Stitch "full") */
+  --radius-full: 9999px;
+
+  /* ---------- Typography: font families ---------- */
+  --font-geist: "Geist", system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-jetbrains: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  --font-sans: var(--font-geist);
+  --font-mono: var(--font-jetbrains);
+
+  /* ---------- Typography: scale (matches Stitch exactly) ---------- */
+  --text-headline-xl: 3.5rem;            /* 56px */
+  --text-headline-xl--line-height: 1.1;
+  --text-headline-xl--letter-spacing: -0.02em;
+  --text-headline-xl--font-weight: 800;
+
+  --text-headline-lg: 2rem;              /* 32px */
+  --text-headline-lg--line-height: 1.2;
+  --text-headline-lg--letter-spacing: -0.01em;
+  --text-headline-lg--font-weight: 600;
+
+  --text-headline-lg-mobile: 1.75rem;    /* 28px */
+  --text-headline-lg-mobile--line-height: 1.2;
+  --text-headline-lg-mobile--font-weight: 600;
+
+  --text-body-md: 1rem;                  /* 16px */
+  --text-body-md--line-height: 1.6;
+  --text-body-md--font-weight: 400;
+
+  --text-body-sm: 0.875rem;              /* 14px */
+  --text-body-sm--line-height: 1.5;
+  --text-body-sm--font-weight: 400;
+
+  --text-label-code: 0.8125rem;          /* 13px */
+  --text-label-code--line-height: 1.4;
+  --text-label-code--letter-spacing: 0.02em;
+  --text-label-code--font-weight: 500;
+
+  --text-label-caps: 0.6875rem;          /* 11px */
+  --text-label-caps--line-height: 1;
+  --text-label-caps--letter-spacing: 0.1em;
+  --text-label-caps--font-weight: 700;
+
+  /* Hero-only scale-up used on the Portfolio H1.
+     Stitch renders it via raw text-[64px] md:text-[88px] in the JSX; we
+     define a base value of 64px here so the JSX can use `text-hero` on
+     mobile, and override to 88px via a `text-hero-md` companion utility
+     in the base layer (a @media inside @theme is not allowed). */
+  --text-hero: 4rem;                     /* 64px */
+  --text-hero--line-height: 0.9;
+  --text-hero--letter-spacing: -0.025em;
+  --text-hero--font-weight: 800;
+
+  /* ---------- Animations ---------- */
+  --animate-fade-up: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-fade-in: fadeIn 0.6s ease-out forwards;
+  --animate-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-ping: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.5; }
+}
+
+@keyframes ping {
+  75%, 100% { transform: scale(2); opacity: 0; }
+}
+
+/* ---------------------------------------------------------------------------
+ * Base layer: radial-gradient body, fonts, antialiasing, selection, icons.
+ * Matches Stitch's per-screen <style> blocks exactly.
+ * --------------------------------------------------------------------------- */
+@layer base {
+  /* Default to the DARK theme — `theme="dark"` is set on <html> by the
+     inline boot script in index.html (or by JS if no preference). */
+  :root,
+  html.dark {
+    color-scheme: dark;
+
+    /* Aliases the spec calls for, kept in sync with the dark --color-*
+       tokens below so any component referencing them resolves correctly. */
+    --bg-primary: #0a0a0f;
+    --bg-secondary: #111118;
+    --bg-card: #16161f;
+    --text-primary: #ffffff;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --border: rgba(255, 255, 255, 0.08);
+    --accent: #6366f1;
+  }
+
+  /* LIGHT theme — re-uses the same Tailwind --color-* tokens so every
+     existing utility (bg-primary, text-on-surface, border-outline/10,
+     …) re-resolves automatically when the page is in light mode. */
+  html.light {
+    color-scheme: light;
+
+    --bg-primary: #ffffff;
+    --bg-secondary: #f4f4f5;
+    --bg-card: #f8f8f8;
+    --text-primary: #0f0f0f;
+    --text-secondary: #52525b;
+    --text-muted: #71717a;
+    --border: rgba(0, 0, 0, 0.08);
+    --accent: #6366f1;
+
+    /* Tailwind utility tokens — light equivalents of the dark palette. */
+    --color-background: #ffffff;
+    --color-on-background: #0f0f0f;
+    --color-surface: #ffffff;
+    --color-surface-dim: #f4f4f5;
+    --color-surface-bright: #f8f8f8;
+    --color-surface-container-lowest: #ffffff;
+    --color-surface-container-low: #f8f8f8;
+    --color-surface-container: #f4f4f5;
+    --color-surface-container-high: #e7e7ea;
+    --color-surface-container-highest: #dcdce0;
+    --color-surface-variant: #e7e7ea;
+    --color-surface-tint: #6366f1;
+
+    --color-on-surface: #0f0f0f;
+    --color-on-surface-variant: #52525b;
+    --color-inverse-surface: #0f0f0f;
+    --color-inverse-on-surface: #ffffff;
+
+    /* Primary stays indigo in both themes; on-primary flips dark. */
+    --color-primary: #4f46e5;
+    --color-on-primary: #ffffff;
+    --color-primary-container: #e0e7ff;
+    --color-on-primary-container: #1e1b4b;
+    --color-inverse-primary: #c0c1ff;
+    --color-primary-fixed: #e0e7ff;
+    --color-primary-fixed-dim: #c7d2fe;
+    --color-on-primary-fixed: #1e1b4b;
+    --color-on-primary-fixed-variant: #3730a3;
+
+    --color-secondary: #475569;
+    --color-on-secondary: #ffffff;
+    --color-secondary-container: #e2e8f0;
+    --color-on-secondary-container: #1e293b;
+
+    --color-tertiary: #d97721;
+    --color-on-tertiary: #ffffff;
+    --color-tertiary-container: #fed7aa;
+    --color-on-tertiary-container: #7c2d12;
+
+    --color-outline: #94a3b8;
+    --color-outline-variant: #e2e8f0;
+    --color-error: #dc2626;
+    --color-on-error: #ffffff;
+    --color-error-container: #fee2e2;
+    --color-on-error-container: #7f1d1d;
+  }
+
+  html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  html.dark {
+    background-color: #0a0a0a;
+  }
+
+  html.light {
+    background-color: #ffffff;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100svh;
+    overflow-x: hidden;
+    font-family: var(--font-geist);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    color: var(--text-primary);
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  html.dark body {
+    background-color: #0a0a0a;
+    background-image: radial-gradient(circle at 50% -20%, #1a1b3a 0%, #0a0a0a 60%);
+  }
+
+  html.light body {
+    background-color: #ffffff;
+    background-image: radial-gradient(circle at 50% -20%, #eef2ff 0%, #ffffff 70%);
+  }
+
+  /* Ambient backdrop: a fixed, very low-opacity indigo glow anchored to
+     the top of the viewport. Painted below all content so it doesn't
+     interfere with text legibility, but adds depth on long pages. */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    transition: background 0.2s ease;
+  }
+  html.dark body::before {
+    background:
+      radial-gradient(ellipse 60% 40% at 50% 0%, rgba(99, 102, 241, 0.08), transparent 70%),
+      radial-gradient(ellipse 40% 30% at 100% 30%, rgba(192, 193, 255, 0.04), transparent 70%);
+  }
+  html.light body::before {
+    background:
+      radial-gradient(ellipse 60% 40% at 50% 0%, rgba(99, 102, 241, 0.10), transparent 70%),
+      radial-gradient(ellipse 40% 30% at 100% 30%, rgba(192, 193, 255, 0.06), transparent 70%);
+  }
+
+  /* Ensure the actual page content sits above the ambient layer. */
+  #root {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Word-wrap safety for long URLs / unbreakable strings inside small cards. */
+  p, h1, h2, h3, h4, h5, h6, span, a, li, button {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-primary) 30%, transparent);
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  html.dark ::selection {
+    color: #fff;
+  }
+  html.light ::selection {
+    color: #0f0f0f;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-geist);
+    color: var(--color-on-surface);
+    transition: color 0.2s ease;
+  }
+
+  /* Accessible focus ring — applies to any interactive element when
+     navigated by keyboard. Subtle primary glow that matches the design
+     language without being noisy. Buttons / links inherit naturally. */
+  :focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--color-primary) 70%, transparent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* `text-hero` is the Portfolio H1 token (4rem / 64px on mobile).
+     Companion `.md\:text-hero` class scales it to 5.5rem / 88px on md+. */
+  .text-hero {
+    font-size: var(--text-hero);
+    line-height: var(--text-hero--line-height, 0.9);
+    letter-spacing: var(--text-hero--letter-spacing, -0.025em);
+    font-weight: var(--text-hero--font-weight, 800);
+  }
+  @media (width >= 48rem) {
+    .md\:text-hero {
+      font-size: 5.5rem;
+    }
+  }
+
+  .material-symbols-outlined {
+    font-family: "Material Symbols Outlined";
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Custom utilities — pixel-for-pixel with Stitch's per-screen <style> blocks.
+ * --------------------------------------------------------------------------- */
+
+/* Sticky nav surface — Portfolio/Projects variant. */
+@utility nav-blur {
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+html.dark .nav-blur {
+  background-color: rgb(10 10 10 / 0.8);
+}
+html.light .nav-blur {
+  background-color: rgba(255, 255, 255, 0.85);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Hide scrollbar (used on horizontally-scrolling tag rows). */
+@utility scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Glass card: tinted surface + blur(12px). Used in experience timeline. */
+@utility glass-card {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+html.dark .glass-card {
+  background-color: rgb(17 17 17 / 0.7);
+}
+html.light .glass-card {
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* Obsidian card (Contact). */
+@utility obsidian-card {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+html.dark .obsidian-card {
+  background-color: rgb(28 27 27 / 0.6);
+  border: 1px solid rgb(255 255 255 / 0.05);
+}
+html.light .obsidian-card {
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* card-glow: Stitch's "lift on hover" card surface (Portfolio + Projects). */
+@utility card-glow {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+html.dark .card-glow {
+  border: 1px solid rgb(255 255 255 / 0.05);
+  background-color: rgb(17 17 17 / 0.7);
+}
+html.light .card-glow {
+  border: 1px solid var(--border);
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* terminal-badge: $ whoami chip. */
+@utility terminal-badge {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+html.dark .terminal-badge {
+  background-color: rgb(192 193 255 / 0.05);
+  border: 1px solid rgb(192 193 255 / 0.2);
+}
+html.light .terminal-badge {
+  background-color: #f1f1f1;
+  border: 1px solid #e0e0e0;
+  color: #333;
+}
+
+/* Experience timeline: vertical gradient line. */
+@utility timeline-line {
+  position: absolute;
+  left: 1.25rem;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  transition: background-image 0.2s ease;
+}
+html.dark .timeline-line {
+  background-image: linear-gradient(
+    to bottom,
+    transparent,
+    rgb(192 193 255 / 0.4) 15%,
+    rgb(192 193 255 / 0.4) 85%,
+    transparent
+  );
+}
+html.light .timeline-line {
+  background-image: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(0, 0, 0, 0.18) 15%,
+    rgba(0, 0, 0, 0.18) 85%,
+    transparent
+  );
+}
+@utility timeline-line-md {
+  @media (width >= 48rem) {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+}
+
+/* Experience timeline: hollow ring node, dead-centered on the line. */
+@utility timeline-node {
+  position: absolute;
+  left: 1.25rem;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  z-index: 10;
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+html.dark .timeline-node {
+  background-color: #0a0a0a;
+  border: 2px solid #c0c1ff;
+  box-shadow: 0 0 8px #c0c1ff;
+}
+html.light .timeline-node {
+  background-color: #ffffff;
+  border: 2px solid #4f46e5;
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.4);
+}
+@utility timeline-node-md {
+  @media (width >= 48rem) {
+    left: 50%;
+    right: auto;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Animation delay classes used on Contact. */
+@utility delay-100 {
+  animation-delay: 0.1s;
+}
+@utility delay-200 {
+  animation-delay: 0.2s;
+}
+
+/* ---------------------------------------------------------------------------
+ * Component-layer rules — only what can't be expressed as @utility.
+ * --------------------------------------------------------------------------- */
+@layer components {
+  /* Webkit companion for .scrollbar-none — the @utility above only
+     declares scrollbar-width; the ::-webkit-scrollbar pseudo can't be
+     declared inside an @utility in Tailwind v4. */
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  .card-glow:hover {
+    transform: translateY(-4px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  html.dark .card-glow:hover {
+    border-color: rgb(192 193 255 / 0.3);
+    box-shadow: 0 12px 32px -8px rgb(0 0 0 / 0.4), 0 0 24px rgb(192 193 255 / 0.08);
+  }
+  html.light .card-glow:hover {
+    border-color: rgba(99, 102, 241, 0.4);
+    box-shadow: 0 12px 32px -8px rgba(99, 102, 241, 0.12), 0 0 24px rgba(99, 102, 241, 0.06);
+  }
+
+  .obsidian-card:hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  html.dark .obsidian-card:hover {
+    border-color: rgb(99 102 241 / 0.3);
+    box-shadow: 0 0 40px rgb(99 102 241 / 0.08);
+  }
+  html.light .obsidian-card:hover {
+    border-color: rgba(99, 102, 241, 0.4);
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.10);
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+  /* Section eyebrow: small uppercase label above section titles. */
+  .eyebrow {
+    font-family: var(--font-jetbrains);
+    font-size: 0.6875rem;   /* 11px */
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--color-primary);
+    transition: color 0.2s ease;
+  }
+
+  /* Tech tag chip — subtle border glow on hover, fits the dark theme. */
+  .tag-chip {
+    transition: border-color 0.25s ease, color 0.25s ease, background-color 0.25s ease;
+  }
+  html.dark .tag-chip:hover {
+    border-color: rgb(192 193 255 / 0.4);
+    color: var(--color-on-surface);
+    background-color: rgb(192 193 255 / 0.06);
+  }
+  html.light .tag-chip:hover {
+    border-color: #4f46e5;
+    color: #1e1b4b;
+    background-color: #e0e7ff;
+  }
+
+  /* Section divider: rules with a centered eyebrow label and two
+     decorative diamond markers on each side. */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;     /* 24px */
+    justify-content: center;
+  }
+  .section-divider::before,
+  .section-divider::after {
+    content: '';
+    flex-grow: 1;
+    height: 1px;
+    transition: background 0.2s ease;
+  }
+  html.dark .section-divider::before,
+  html.dark .section-divider::after {
+    background: linear-gradient(to right, transparent, rgb(255 255 255 / 0.08), transparent);
+  }
+  html.light .section-divider::before,
+  html.light .section-divider::after {
+    background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.10), transparent);
+  }
+  .section-divider > * {
+    flex-shrink: 0;
+  }
+
+  /* Subtle gradient on the hero's lower line for editorial polish. */
+  .text-gradient-primary {
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    transition: background-image 0.2s ease;
+  }
+  html.dark .text-gradient-primary {
+    background-image: linear-gradient(180deg, #ffffff 0%, #ffffff 60%, rgb(192 193 255 / 0.85) 100%);
+  }
+  html.light .text-gradient-primary {
+    background-image: linear-gradient(180deg, #0f0f0f 0%, #0f0f0f 60%, #4f46e5 100%);
+  }
+
+  /* Image hover overlay for project cards. */
+  .img-hover-overlay {
+    position: relative;
+  }
+  .img-hover-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(99, 102, 241, 0.18) 100%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+  .img-hover-overlay:hover::after {
+    opacity: 1;
+  }
+
+  /* Systematic section vertical rhythm — single source of truth.
+     96px (mb-24) on mobile, 128px (mb-32) on desktop — matches Stitch
+     source screens. Replaces ad-hoc py-12 / py-16 / py-20 utilities. */
+  .section-y {
+    padding-top: 6rem;   /* 96px */
+    padding-bottom: 6rem;
+  }
+  @media (width >= 48rem) {
+    .section-y {
+      padding-top: 8rem; /* 128px */
+      padding-bottom: 8rem;
+    }
+  }
+}
