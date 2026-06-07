@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import Layout from './Layout.jsx'
+import Container from './Container.jsx'
 
 /**
  * Contact — page header + two-column form/sidebar layout.
@@ -8,7 +9,7 @@ import Layout from './Layout.jsx'
  *   inner:  max-width: 1280px, padding: 48px 64px
  *   grid:   1fr 400px, gap: 24px
  *
- * Form inputs are tightly sized (42px / 14px) and the SEND button is
+ * Form inputs are tightly sized (44px / 14px) and the SEND button is
  * capped at 44px. The right column shows full email/github/linkedin
  * values (no truncation) in compact contact cards.
  */
@@ -40,9 +41,9 @@ function Contact() {
   return (
     <Layout activePath="/contact">
       <section>
-        <div className="w-full max-w-[1280px] mx-auto px-6 md:px-10 lg:px-16 py-[48px]">
+        <Container className="py-[48px]">
           {/* ---------- Page Header ---------- */}
-          <div className="mb-10 text-center animate-fade-up">
+          <div className="mb-5 md:mb-10 text-center animate-fade-up">
             <p className="eyebrow mb-3">Contact</p>
             <h1 className="font-headline-xl text-headline-xl text-on-surface mb-4 uppercase tracking-tight">
               Get In Touch
@@ -56,10 +57,10 @@ function Contact() {
           </div>
 
           {/* ---------- Two-Column Grid (form + 400px sidebar) ---------- */}
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-3 md:gap-6">
             {/* Left column: form */}
             <div className="animate-fade-up delay-100 min-w-0">
-              <div className="obsidian-card rounded-xl p-8">
+              <div className="obsidian-card rounded-xl p-4 md:p-8">
                 <form
                   className="flex flex-col gap-5"
                   onSubmit={(e) => {
@@ -83,7 +84,7 @@ function Contact() {
                         required
                         placeholder="Your Name"
                         className="w-full box-border bg-surface-container border border-outline-variant rounded-lg px-3.5 py-2.5 text-[14px] font-label-code text-on-surface placeholder:text-outline placeholder:opacity-60 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none"
-                        style={{ height: '42px' }}
+                        style={{ height: '44px' }}
                       />
                     </div>
                     <div>
@@ -100,7 +101,7 @@ function Contact() {
                         required
                         placeholder="email@example.com"
                         className="w-full box-border bg-surface-container border border-outline-variant rounded-lg px-3.5 py-2.5 text-[14px] font-label-code text-on-surface placeholder:text-outline placeholder:opacity-60 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none"
-                        style={{ height: '42px' }}
+                        style={{ height: '44px' }}
                       />
                     </div>
                   </div>
@@ -120,7 +121,7 @@ function Contact() {
                       required
                       placeholder="Project Inquiry"
                       className="w-full box-border bg-surface-container border border-outline-variant rounded-lg px-3.5 py-2.5 text-[14px] font-label-code text-on-surface placeholder:text-outline placeholder:opacity-60 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all outline-none"
-                      style={{ height: '42px' }}
+                      style={{ height: '44px' }}
                     />
                   </div>
 
@@ -265,7 +266,7 @@ function Contact() {
               </div>
             </div>
           </div>
-        </div>
+        </Container>
       </section>
     </Layout>
   )

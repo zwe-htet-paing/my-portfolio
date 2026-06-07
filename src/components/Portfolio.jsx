@@ -29,9 +29,9 @@ function Portfolio() {
     <Layout activePath="/">
       {/* ---------- Hero ---------- */}
       <section>
-        <Container className="grid grid-cols-1 md:grid-cols-[1fr_480px] gap-12 md:gap-x-20 md:gap-y-0 items-start py-[60px]">
-          <div className="min-w-0 md:col-start-1 md:row-start-1">
-            <div className="inline-flex items-center gap-2.5 terminal-badge px-3.5 py-1.5 mb-6 rounded-md">
+        <Container className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-3 lg:gap-x-16 lg:gap-y-0 items-start section-y">
+          <div className="min-w-0 lg:col-start-1 lg:row-start-1">
+            <div className="inline-flex items-center gap-2.5 terminal-badge px-3.5 py-1.5 mb-2 lg:mb-6 rounded-md">
               <span className="relative flex w-2 h-2">
                 <span className="absolute inline-flex w-full h-full rounded-full bg-green-500 opacity-60 animate-ping" />
                 <span className="relative inline-flex w-2 h-2 rounded-full bg-green-500" />
@@ -43,7 +43,7 @@ function Portfolio() {
           </div>
 
           <p
-            className="min-w-0 uppercase mb-2 text-on-surface-variant md:col-start-1 md:row-start-2"
+            className="min-w-0 uppercase mb-2 text-on-surface-variant lg:col-start-1 lg:row-start-2"
             style={{
               fontSize: '13px',
               letterSpacing: '0.15em',
@@ -52,17 +52,17 @@ function Portfolio() {
             Hi, I'm
           </p>
 
-          <h1 className="min-w-0 font-headline-xl text-[64px] md:text-[88px] leading-[0.9] font-extrabold tracking-tighter text-white uppercase mb-3 md:col-start-1 md:row-start-3">
+          <h1 className="min-w-0 text-hero text-white uppercase mb-3 lg:col-start-1 lg:row-start-3">
             <span className="text-gradient-primary">Zwe Htet</span>
             <br />
             <span className="text-gradient-primary">Paing</span>
           </h1>
 
-          <h2 className="min-w-0 font-headline-lg text-2xl md:text-3xl text-primary font-semibold tracking-tight uppercase mb-4 md:col-start-1 md:row-start-4">
+          <h2 className="min-w-0 font-headline-lg text-2xl md:text-3xl text-primary font-semibold tracking-tight uppercase mb-4 lg:col-start-1 lg:row-start-4">
             AI / ML Engineer
           </h2>
 
-          <div className="min-w-0 max-w-lg md:col-start-1 md:row-start-5">
+          <div className="min-w-0 max-w-lg lg:col-start-1 lg:row-start-5">
             <p className="font-body-md text-lg md:text-xl text-on-surface leading-relaxed mb-3">
               Focused on machine learning, NLP, and generative AI systems.
               Building end-to-end pipelines for RAG and automated trading.
@@ -75,8 +75,8 @@ function Portfolio() {
             </p>
           </div>
 
-          <div className="flex justify-center md:justify-end min-w-0 md:col-start-2 md:row-start-3 md:row-span-3">
-            <div className="relative w-[320px] max-w-full overflow-hidden rounded-lg border border-outline-variant/30 bg-surface-container shadow-2xl ring-1 ring-primary/5 hover:scale-105 transition-transform duration-300 ease-out">
+          <div className="flex justify-center lg:justify-end min-w-0 lg:col-start-2 lg:row-start-3 lg:row-span-3">
+            <div className="relative w-[200px] md:w-[320px] max-w-full aspect-[3/4] overflow-hidden rounded-lg border border-outline-variant/30 bg-surface-container shadow-2xl ring-1 ring-primary/5 hover:scale-105 transition-transform duration-300 ease-out">
               <img
                 alt="Portrait of Zwe Htet Paing"
                 src="/profile.png"
@@ -93,14 +93,14 @@ function Portfolio() {
 
       {/* ---------- Tech Stack ---------- */}
       <section>
-        <Container className="py-[60px]">
-          <div className="section-divider mb-12">
+        <Container className="section-y">
+          <div className="section-divider mb-6 md:mb-12">
             <h2 className="font-headline-lg text-2xl uppercase tracking-widest text-on-surface font-bold">
               Tech Stack
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[16px]">
             {[
               { icon: 'terminal', title: 'Languages & Databases', items: ['Python', 'JavaScript', 'Rust', 'MySQL', 'PostgreSQL', 'MongoDB', 'Supabase'] },
               { icon: 'psychology', title: 'ML & AI Frameworks', items: ['PyTorch', 'TensorFlow', 'Scikit-learn', 'Hugging Face', 'MLflow'] },
@@ -108,31 +108,46 @@ function Portfolio() {
               { icon: 'automation', title: 'Data & Automation', items: ['Apache Airflow', 'Prefect', 'n8n', 'FastAPI'] },
               { icon: 'cloud', title: 'Cloud & DevOps', items: ['AWS', 'GCP', 'Docker', 'Terraform', 'Vercel', 'DigitalOcean'] },
               { icon: 'visibility', title: 'NLP & Computer Vision', items: ['NER', 'Sentiment Analysis', 'Speech Recognition', 'Object Detection', 'Recommendation'] },
-            ].map((group) => (
+            ].map((group, i) => (
               <div
                 key={group.title}
-                className="reveal card-glow bg-surface-container-low p-6 rounded-lg"
+                className="reveal card-glow relative obsidian-card rounded-xl overflow-hidden"
               >
-                <div className="flex items-center gap-3 mb-5">
-                  <span
-                    className="material-symbols-outlined text-primary text-xl"
-                    style={{ fontVariationSettings: "'FILL' 1" }}
-                  >
-                    {group.icon}
-                  </span>
-                  <h3 className="font-label-caps text-xs text-on-surface tracking-wider">
-                    {group.title}
-                  </h3>
-                </div>
-                <div className="flex flex-wrap gap-1.5">
-                  {group.items.map((item) => (
-                    <span
-                      key={item}
-                      className="tag-chip font-label-code text-[11px] border border-outline-variant/30 text-on-surface-variant px-2 py-1 rounded"
-                    >
-                      {item}
+                {/* Top accent stripe */}
+                <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-primary via-primary/50 to-transparent" />
+
+                <div className="p-[24px]">
+                  {/* Header: icon badge + title + ordinal */}
+                  <div className="flex items-start justify-between mb-[20px]">
+                    <div className="flex items-center gap-[12px] min-w-0">
+                      <div className="w-[40px] h-[40px] rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
+                        <span
+                          className="material-symbols-outlined text-primary text-[20px]"
+                          style={{ fontVariationSettings: "'FILL' 1" }}
+                        >
+                          {group.icon}
+                        </span>
+                      </div>
+                      <h3 className="font-label-caps text-[11px] text-on-surface tracking-widest uppercase leading-snug">
+                        {group.title}
+                      </h3>
+                    </div>
+                    <span className="font-bold text-[32px] leading-none select-none tabular-nums shrink-0 ml-[8px]" style={{ color: 'color-mix(in srgb, var(--color-outline) 15%, transparent)' }}>
+                      {String(i + 1).padStart(2, '0')}
                     </span>
-                  ))}
+                  </div>
+
+                  {/* Skill chips */}
+                  <div className="flex flex-wrap gap-[6px]">
+                    {group.items.map((item) => (
+                      <span
+                        key={item}
+                        className="tag-chip font-label-code text-[11px] border border-outline-variant/20 text-on-surface-variant bg-surface-container/40 px-[10px] py-[4px] rounded-md hover:border-primary/50 hover:text-primary transition-colors cursor-default"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}
@@ -142,8 +157,8 @@ function Portfolio() {
 
       {/* ---------- Experience ---------- */}
       <section>
-        <Container className="py-[60px]">
-          <div className="section-divider mb-20">
+        <Container className="section-y">
+          <div className="section-divider mb-6 md:mb-12">
             <h2 className="font-headline-lg text-2xl uppercase tracking-widest text-on-surface font-bold">
               Experience
             </h2>
@@ -236,9 +251,9 @@ function Portfolio() {
                     {/* Card.
                         Mobile: 48px left padding to clear the vertical
                         timeline. Desktop: 16px to sit close to the line. */}
-                    <div className={`pl-12 md:pl-4 ${orderCard}`}>
+                    <div className={`pl-5 md:pl-4 ${orderCard}`}>
                       <div
-                        className={`reveal glass-card card-glow p-6 rounded-lg border border-white/5 ${
+                        className={`reveal glass-card card-glow p-4 md:p-6 rounded-lg border border-white/5 ${
                           isLeft ? '' : 'md:text-right'
                         }`}
                       >
@@ -268,15 +283,15 @@ function Portfolio() {
 
       {/* ---------- Education ---------- */}
       <section>
-        <Container className="py-[60px]">
-          <div className="section-divider mb-12">
+        <Container className="section-y">
+          <div className="section-divider mb-6 md:mb-12">
             <h2 className="font-headline-lg text-2xl uppercase tracking-widest text-on-surface font-bold">
               Education
             </h2>
           </div>
 
           <div>
-            <div className="reveal glass-card card-glow p-8 md:p-10 rounded-lg border border-white/5 relative overflow-hidden group">
+            <div className="reveal glass-card card-glow p-4 md:p-10 rounded-lg border border-white/5 relative overflow-hidden group">
               <div className="absolute -right-10 -bottom-10 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
                 <span
                   className="material-symbols-outlined text-[160px]"

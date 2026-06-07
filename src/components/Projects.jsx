@@ -79,12 +79,11 @@ const PROJECTS = [
 function ProjectCard({ project }) {
   return (
     <article className="reveal card-glow flex flex-col h-full rounded-xl overflow-hidden group">
-      <div className="w-full h-[200px] overflow-hidden border-b border-outline-variant/20 relative">
+      <div className="w-full aspect-video overflow-hidden border-b border-outline-variant/20 relative">
         <img
           alt={project.title}
           src={project.cover}
           width="640"
-          height="200"
           loading="lazy"
           className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-700 ease-out"
         />
@@ -92,15 +91,15 @@ function ProjectCard({ project }) {
         <div className="absolute inset-0 bg-gradient-to-t from-primary/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
       </div>
 
-      <div className="p-5 flex flex-col flex-grow">
-        <h3 className="font-headline-lg text-xl mb-2 text-on-surface group-hover:text-primary transition-colors">
+      <div className="p-[20px] flex flex-col flex-grow">
+        <h3 className="font-headline-lg text-xl mb-[8px] text-on-surface group-hover:text-primary transition-colors">
           {project.title}
         </h3>
-        <p className="text-on-surface-variant text-body-sm leading-relaxed mb-4 flex-grow">
+        <p className="text-on-surface-variant text-body-sm leading-relaxed mb-[12px] flex-grow">
           {project.description}
         </p>
 
-        <div className="flex flex-nowrap gap-1.5 mb-4 overflow-x-auto scrollbar-none">
+        <div className="flex flex-nowrap gap-1.5 mb-[12px] overflow-x-auto scrollbar-none">
           {project.tags.map((tag) => (
             <span
               key={tag}
@@ -111,26 +110,26 @@ function ProjectCard({ project }) {
           ))}
         </div>
 
-        <div className="flex items-center gap-2 mt-auto pt-3 border-t border-outline-variant/20">
+        <div className="flex items-center gap-2 mt-auto pt-[10px] border-t border-outline-variant/20">
+          <a
+            href={project.code || '#'}
+            target={project.code ? '_blank' : undefined}
+            rel={project.code ? 'noreferrer' : undefined}
+            className="flex-1 bg-primary text-on-primary text-center font-label-code text-xs font-bold py-1.5 rounded-full hover:brightness-110 active:scale-[0.97] transition-all flex items-center justify-center gap-1"
+          >
+            Code
+            <span className="material-symbols-outlined text-[13px] leading-none">code</span>
+          </a>
           <a
             href={project.primary.href || '#'}
             target={project.primary.href ? '_blank' : undefined}
             rel={project.primary.href ? 'noreferrer' : undefined}
-            className="flex-1 bg-primary text-on-primary text-center font-label-code text-[11px] font-bold py-1.5 rounded-full hover:brightness-110 active:scale-[0.97] transition-all flex items-center justify-center gap-1"
+            className="flex-1 border border-outline-variant/30 text-on-surface-variant hover:text-on-surface hover:bg-surface-container hover:border-outline text-center font-label-code text-xs font-bold py-1.5 rounded-full transition-all flex items-center justify-center gap-1"
           >
             {project.primary.label}
             <span className="material-symbols-outlined text-[13px] leading-none">
               {project.primary.icon}
             </span>
-          </a>
-          <a
-            href={project.code || '#'}
-            target={project.code ? '_blank' : undefined}
-            rel={project.code ? 'noreferrer' : undefined}
-            className="flex-1 border border-outline-variant/30 text-on-surface-variant hover:text-on-surface hover:bg-surface-container hover:border-outline text-center font-label-code text-[11px] py-1.5 rounded-full transition-all flex items-center justify-center gap-1"
-          >
-            Code
-            <span className="material-symbols-outlined text-[13px] leading-none">code</span>
           </a>
         </div>
       </div>
@@ -163,9 +162,9 @@ function Projects() {
   return (
     <Layout activePath="/projects">
       <section>
-        <Container className="py-[60px]">
+        <Container className="section-y">
           {/* ---------- Section Header ---------- */}
-          <div className="mb-16 md:mb-20 text-center max-w-[600px] mx-auto">
+          <div className="mb-6 md:mb-16 text-center max-w-[600px] mx-auto">
             <p className="eyebrow mb-4">Selected work</p>
             <h1 className="font-headline-xl text-headline-xl mb-5 tracking-tight">
               All Projects
@@ -184,14 +183,14 @@ function Projects() {
 
           <nav
             aria-label="Project pages"
-            className="mt-12 flex items-center justify-center gap-2"
+            className="mt-6 md:mt-12 flex items-center justify-center gap-2"
           >
               <button
                 type="button"
                 onClick={() => goTo(safePage - 1)}
                 disabled={safePage === 1}
                 aria-label="Previous page"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-outline-variant/30 text-on-surface-variant font-label-code text-xs font-bold hover:text-on-surface hover:bg-surface-container hover:border-outline disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:border-outline-variant/30 disabled:hover:text-on-surface-variant transition-all"
+                className="inline-flex items-center gap-1.5 px-4 py-2 min-h-[44px] rounded-full border border-outline-variant/30 text-on-surface-variant font-label-code text-xs font-bold hover:text-on-surface hover:bg-surface-container hover:border-outline disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:border-outline-variant/30 disabled:hover:text-on-surface-variant transition-all"
               >
                 <span className="material-symbols-outlined text-[15px]">
                   chevron_left
@@ -210,8 +209,8 @@ function Projects() {
                     aria-label={`Page ${p}`}
                     className={
                       isActive
-                        ? 'min-w-[36px] h-9 px-3 rounded-full bg-primary text-on-primary font-label-code text-xs font-bold'
-                        : 'min-w-[36px] h-9 px-3 rounded-full border border-outline-variant/30 text-on-surface-variant font-label-code text-xs hover:text-on-surface hover:bg-surface-container hover:border-outline transition-all'
+                        ? 'w-[36px] h-[36px] rounded-full bg-primary text-on-primary font-label-code text-xs font-bold'
+                        : 'w-[36px] h-[36px] rounded-full border border-outline-variant/30 text-on-surface-variant font-label-code text-xs hover:text-on-surface hover:bg-surface-container hover:border-outline transition-all'
                     }
                   >
                     {p}
@@ -224,7 +223,7 @@ function Projects() {
                 onClick={() => goTo(safePage + 1)}
                 disabled={safePage === totalPages}
                 aria-label="Next page"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-outline-variant/30 text-on-surface-variant font-label-code text-xs font-bold hover:text-on-surface hover:bg-surface-container hover:border-outline disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:border-outline-variant/30 disabled:hover:text-on-surface-variant transition-all"
+                className="inline-flex items-center gap-1.5 px-4 py-2 min-h-[44px] rounded-full border border-outline-variant/30 text-on-surface-variant font-label-code text-xs font-bold hover:text-on-surface hover:bg-surface-container hover:border-outline disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:border-outline-variant/30 disabled:hover:text-on-surface-variant transition-all"
               >
                 Next
                 <span className="material-symbols-outlined text-[15px]">

@@ -90,7 +90,7 @@
   --spacing-stack-xl: 4rem;              /* 64px */
   --spacing-section: 6rem;              /* 96px (Stitch mb-24) */
   --spacing-section-lg: 8rem;           /* 128px (Stitch mb-32) */
-  --container-portfolio: 87.5rem;       /* 1400px — global content max-width */
+  --container-portfolio: 75rem;          /* 1200px — global content max-width */
 
   /* ---------- Radius (Stitch: DEFAULT 2, lg 4, xl 8, full 12) ---------- */
   --radius-sm: 0.125rem;                /* 2px */
@@ -109,12 +109,12 @@
   --font-mono: var(--font-jetbrains);
 
   /* ---------- Typography: scale (matches Stitch exactly) ---------- */
-  --text-headline-xl: 3.5rem;            /* 56px */
+  --text-headline-xl: clamp(1.75rem, 2.5vw + 1rem, 3.5rem);
   --text-headline-xl--line-height: 1.1;
   --text-headline-xl--letter-spacing: -0.02em;
   --text-headline-xl--font-weight: 800;
 
-  --text-headline-lg: 2rem;              /* 32px */
+  --text-headline-lg: clamp(1.25rem, 2vw + 0.75rem, 2rem);
   --text-headline-lg--line-height: 1.2;
   --text-headline-lg--letter-spacing: -0.01em;
   --text-headline-lg--font-weight: 600;
@@ -141,12 +141,9 @@
   --text-label-caps--letter-spacing: 0.1em;
   --text-label-caps--font-weight: 700;
 
-  /* Hero-only scale-up used on the Portfolio H1.
-     Stitch renders it via raw text-[64px] md:text-[88px] in the JSX; we
-     define a base value of 64px here so the JSX can use `text-hero` on
-     mobile, and override to 88px via a `text-hero-md` companion utility
-     in the base layer (a @media inside @theme is not allowed). */
-  --text-hero: 4rem;                     /* 64px */
+  /* Hero H1: fluid from 2.5rem (40px) at 320px viewport to 5.5rem (88px)
+     at large desktop. Replaces the two-class text-[64px] md:text-[88px]. */
+  --text-hero: clamp(2.5rem, 5vw + 1.5rem, 5.5rem);
   --text-hero--line-height: 0.9;
   --text-hero--letter-spacing: -0.025em;
   --text-hero--font-weight: 800;
@@ -389,20 +386,14 @@
     border-radius: 4px;
   }
 
-  /* `text-hero` is the Portfolio H1 token (4rem / 64px on mobile).
-     Companion `.md\:text-hero` class scales it to 5.5rem / 88px on md+. */
+  /* `text-hero` — the Portfolio H1 fluid type token. Font-size resolves to
+     var(--text-hero), which is a clamp() value set in @theme above. */
   .text-hero {
     font-size: var(--text-hero);
     line-height: var(--text-hero--line-height, 0.9);
     letter-spacing: var(--text-hero--letter-spacing, -0.025em);
     font-weight: var(--text-hero--font-weight, 800);
   }
-  @media (width >= 48rem) {
-    .md\:text-hero {
-      font-size: 5.5rem;
-    }
-  }
-
   .material-symbols-outlined {
     font-family: "Material Symbols Outlined";
     font-weight: normal;
@@ -720,16 +711,18 @@ html.light .timeline-node {
   }
 
   /* Systematic section vertical rhythm — single source of truth.
-     96px (mb-24) on mobile, 128px (mb-32) on desktop — matches Stitch
-     source screens. Replaces ad-hoc py-12 / py-16 / py-20 utilities. */
+     Fluid from 3.5rem (56px) on small mobile to 8rem (128px) on wide
+     desktop. Replaces ad-hoc py-12 / py-16 / py-20 utilities. */
   .section-y {
-    padding-top: 6rem;   /* 96px */
-    padding-bottom: 6rem;
+    padding-block: clamp(3.5rem, 4vw + 2rem, 8rem);
   }
-  @media (width >= 48rem) {
-    .section-y {
-      padding-top: 8rem; /* 128px */
-      padding-bottom: 8rem;
+
+  /* On narrow screens the animated canvas constellation competes with
+     text legibility. Dimming it to 40% keeps the effect present but
+     ensures foreground copy, headings, and gradient text remain crisp. */
+  @media (width < 37.5rem) {
+    canvas[aria-hidden="true"] {
+      opacity: 0.4;
     }
   }
 }

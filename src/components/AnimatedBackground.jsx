@@ -151,7 +151,7 @@ function AnimatedBackground() {
     const LIGHT = {
       node:      [99, 102, 241, 0.55],
       nodeGlow:  [99, 102, 241, 0.0],
-      line:      [99, 102, 241, 0.12],
+      line:      [99, 102, 241, 0.35],
       particle:  [15, 15, 15, 0.25],
       cursor:    [99, 102, 241, 0.08],
       grid:      [99, 102, 241, 0.06],

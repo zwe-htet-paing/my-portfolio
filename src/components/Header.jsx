@@ -43,7 +43,7 @@ function Header({ activePath }) {
       aria-label={menuOpen ? 'Close menu' : 'Open menu'}
       aria-expanded={menuOpen}
       aria-controls="mobile-nav"
-      className="md:hidden inline-flex items-center justify-center w-10 h-10 -mr-2 rounded text-on-surface hover:text-primary transition-colors"
+      className="md:hidden inline-flex items-center justify-center w-11 h-11 -mr-2 rounded text-on-surface hover:text-primary transition-colors"
     >
       <span aria-hidden="true" className="material-symbols-outlined text-2xl">
         {menuOpen ? 'close' : 'menu'}
@@ -93,7 +93,7 @@ function Header({ activePath }) {
             <a
               href="/resume.pdf"
               download="Zwe-Htet-Paing-Resume.pdf"
-              className="hidden sm:inline-flex items-center gap-1.5 bg-primary text-on-primary font-label-code text-sm font-bold px-5 py-2 rounded-full hover:brightness-110 active:scale-95 transition-all"
+              className="hidden sm:inline-flex items-center gap-1.5 bg-primary text-on-primary font-label-code text-sm font-bold px-[20px] py-[8px] rounded-full hover:brightness-110 active:scale-95 transition-all"
             >
               Resume
               <span className="material-symbols-outlined text-[16px] leading-none">
@@ -155,7 +155,7 @@ function MobileDrawer({ open, onClose, links, current }) {
             <a
               href="/resume.pdf"
               download="Zwe-Htet-Paing-Resume.pdf"
-              className="flex w-full items-center justify-center gap-1.5 bg-primary text-on-primary font-label-code text-sm font-bold px-6 py-3 rounded-full hover:brightness-110 active:scale-95 transition-all"
+              className="flex w-full items-center justify-center gap-1.5 bg-primary text-on-primary font-label-code text-sm font-bold px-[20px] py-[10px] rounded-full hover:brightness-110 active:scale-95 transition-all"
             >
               Resume
               <span className="material-symbols-outlined text-[16px] leading-none">

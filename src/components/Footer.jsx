@@ -4,7 +4,6 @@ const SOCIAL_LINKS = [
   { href: 'https://github.com/zwe-htet-paing', label: 'GitHub' },
   { href: 'https://www.linkedin.com/in/zwe-htet-paing/', label: 'LinkedIn' },
   { href: 'https://www.kaggle.com/zwehtetpaing123', label: 'Kaggle' },
-  { href: '#', label: 'X' },
 ]
 
 /**
