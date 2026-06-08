@@ -27,7 +27,7 @@ npm run lint     # ESLint
 
 ## Structure
 
-```
+```text
 src/
   app/
     layout.jsx          # Root layout — fonts, theme boot script, AnimatedBackground
