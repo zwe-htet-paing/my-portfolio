@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect } from 'react'
 import useReducedMotion from '../hooks/useReducedMotion.js'
 import useLowPowerDevice from '../hooks/useLowPowerDevice.js'

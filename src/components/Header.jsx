@@ -1,5 +1,8 @@
+'use client'
+
 import { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import Container from './Container.jsx'
 import ThemeToggle from './ThemeToggle.jsx'
 
@@ -21,7 +24,7 @@ const NAV_LINKS = [
  * menu that opens a full-width nav drawer.
  */
 function Header({ activePath }) {
-  const { pathname } = useLocation()
+  const pathname = usePathname()
   const current = activePath ?? pathname
 
   const [menuOpen, setMenuOpen] = useState(false)
@@ -60,7 +63,7 @@ function Header({ activePath }) {
           className="flex items-center justify-between h-14"
         >
           <Link
-            to="/"
+            href="/"
             className="font-headline-lg text-[15px] font-semibold text-on-surface tracking-tight hover:text-primary transition-colors truncate"
           >
             ZWEHTETPAING.DEV
@@ -72,7 +75,7 @@ function Header({ activePath }) {
               return (
                 <li key={link.to}>
                   <Link
-                    to={link.to}
+                    href={link.to}
                     onClick={closeMenu}
                     aria-current={isActive ? 'page' : undefined}
                     className={
@@ -137,7 +140,7 @@ function MobileDrawer({ open, onClose, links, current }) {
             return (
               <li key={link.to}>
                 <Link
-                  to={link.to}
+                  href={link.to}
                   onClick={onClose}
                   aria-current={isActive ? 'page' : undefined}
                   className={

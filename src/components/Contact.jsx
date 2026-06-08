@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect } from 'react'
 import Layout from './Layout.jsx'
 import Container from './Container.jsx'

@@ -1,3 +1,5 @@
+'use client'
+
 import Layout from './Layout.jsx'
 import Container from './Container.jsx'
 import useScrollReveal from '../hooks/useScrollReveal.js'
@@ -226,7 +228,7 @@ function Portfolio() {
               return (
                 <div
                   key={entry.role}
-                  className="relative mb-16 last:mb-0"
+                  className="relative mb-8 last:mb-0"
                 >
                   {/* Node — exactly on the line at 50% on md+ */}
                   <div className="reveal timeline-node timeline-node-md top-4" />

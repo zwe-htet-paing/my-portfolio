@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react'
 import Layout from './Layout.jsx'
 import Container from './Container.jsx'
@@ -46,13 +48,14 @@ const PROJECTS = [
     primary: { label: 'Demo', icon: 'open_in_new' },
   },
   {
-    title: 'Burmese NLP Pipeline',
-    tags: ['NLP', 'PyTorch', 'Deep Learning'],
+    title: 'Microbiology Burmese RAG',
+    tags: ['RAG', 'Burmese NLP', 'LLMs'],
     cover:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuCkLjPOc-qBbLwYP3RRKTifVNBp7-6JEtbwC7F4L_W4V9ufPTHGl1qXjXzjqDEzl8M9MXC_WR1dtUme1VYwn5Y40OD2Xa-bhHaSOH2Z6PoosdSq2-xbrXm-gtBfLdooDohQHx7oyUEGp_XUfFOiYrMEGh1yc-zL9CrOkfL0tJAuvJnkMSbEXiy9V7wnL077g3ZSOoQSGHYFxqf0J2I-gpcrB9Y3W5lfBsvSms8nRWNXeiMNtZXg4VvEMkXOqJpbUkM5j8Wwn4EzAR8',
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuCrOSeknThNg7_wBCRjdDeWtm-upqe2486HHntOURiZXgN0t92xFSCzb9ui_vGO8nDChBCpuoTda7pKC9Pwete-tzDI44Oa516Ef0kPIaDjqt9eMZwyy_3c79G2uV20MYfdWdGxjgF9M-x-vupjLPyo6QdH1RlywUv4nURHZOqpdfelC8ydL2LKTny80XJwM4y7LllcRcAazOVPBFghao8JvoP1VY5ALQb6mK9WMWO6nqroEyk2mUwAUj_hrruyBzpzkWNl-QxAFcw',
     description:
-      'Designed and trained a comprehensive NLP pipeline for the Burmese language using PyTorch, addressing low-resource language challenges in tokenization and sentiment analysis.',
-    primary: { label: 'Demo', icon: 'open_in_new' },
+      'A Retrieval-Augmented Generation system for microbiology domain knowledge in the Burmese language, enabling accurate biomedical Q&A and information retrieval for low-resource Burmese speakers.',
+    primary: { label: 'Docs', icon: 'description' },
+    code: 'https://github.com/zwe-htet-paing/microbiology-burmese-rag',
   },
   {
     title: 'Airbnb Price Prediction',
@@ -74,11 +77,20 @@ const PROJECTS = [
     primary: { label: 'Demo', icon: 'open_in_new' },
     code: 'https://github.com/zwe-htet-paing/house-price-prediction',
   },
+  {
+    title: 'Burmese NLP Pipeline',
+    tags: ['NLP', 'PyTorch', 'Deep Learning'],
+    cover:
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuCkLjPOc-qBbLwYP3RRKTifVNBp7-6JEtbwC7F4L_W4V9ufPTHGl1qXjXzjqDEzl8M9MXC_WR1dtUme1VYwn5Y40OD2Xa-bhHaSOH2Z6PoosdSq2-xbrXm-gtBfLdooDohQHx7oyUEGp_XUfFOiYrMEGh1yc-zL9CrOkfL0tJAuvJnkMSbEXiy9V7wnL077g3ZSOoQSGHYFxqf0J2I-gpcrB9Y3W5lfBsvSms8nRWNXeiMNtZXg4VvEMkXOqJpbUkM5j8Wwn4EzAR8',
+    description:
+      'Designed and trained a comprehensive NLP pipeline for the Burmese language using PyTorch, addressing low-resource language challenges in tokenization and sentiment analysis.',
+    primary: { label: 'Demo', icon: 'open_in_new' },
+  },
 ]
 
 function ProjectCard({ project }) {
   return (
-    <article className="reveal card-glow flex flex-col h-full rounded-xl overflow-hidden group">
+    <article className="card-glow flex flex-col h-full rounded-xl overflow-hidden group">
       <div className="w-full aspect-video overflow-hidden border-b border-outline-variant/20 relative">
         <img
           alt={project.title}
