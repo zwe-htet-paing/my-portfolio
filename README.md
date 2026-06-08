@@ -1,16 +1,62 @@
-# React + Vite
+# zwehtetpaing.dev
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio site for Zwe Htet Paing — AI/ML Engineer. Built with Next.js 15 and Tailwind CSS v4 against a dark/obsidian design system.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Next.js 15** (App Router, static export)
+- **React 19**
+- **Tailwind CSS v4** via `@tailwindcss/postcss`
+- **ESLint** with `eslint-config-next`
 
-## React Compiler
+## Development
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm install
+npm run dev      # http://localhost:3000
+```
 
-## Expanding the ESLint configuration
+## Commands
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm run dev      # Dev server with HMR
+npm run build    # Production build to .next/
+npm run start    # Serve the production build
+npm run lint     # ESLint
+```
+
+## Structure
+
+```
+src/
+  app/
+    layout.jsx          # Root layout — fonts, theme boot script, AnimatedBackground
+    page.jsx            # / → About
+    projects/page.jsx   # /projects
+    contact/page.jsx    # /contact
+  components/
+    Layout.jsx          # Shared nav + footer wrapper
+    Header.jsx          # Sticky nav with mobile drawer
+    Footer.jsx
+    Portfolio.jsx       # About page content
+    Projects.jsx        # Projects grid with pagination
+    Contact.jsx         # Contact form + sidebar
+    AnimatedBackground.jsx  # Canvas particle animation
+    ThemeToggle.jsx
+    Container.jsx
+  hooks/
+    useTheme.js
+    useScrollReveal.js
+    useReducedMotion.js
+    useLowPowerDevice.js
+  styles/
+    theme.css           # Tailwind v4 @theme design tokens
+public/
+  profile.png
+  resume.pdf
+  favicon.svg
+```
+
+## Deployment
+
+Deployed on Vercel. Push to `main` triggers a new deployment.
