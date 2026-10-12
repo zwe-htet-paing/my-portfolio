@@ -1,0 +1,35 @@
+name: CI
+
+# Lint + production build on every PR and push to main.
+# Deployment (CD) is handled by Vercel's GitHub integration:
+# PRs get preview URLs, merges to main go to production.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Lint
+        run: make lint
+
+      - name: Build
+        run: make build

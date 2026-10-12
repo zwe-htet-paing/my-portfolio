@@ -52,8 +52,8 @@ function Contact() {
             </h1>
             <div className="w-20 h-1 bg-primary mx-auto mb-6 rounded-full" />
             <p className="font-body-md text-on-surface-variant max-w-2xl mx-auto leading-relaxed opacity-80">
-              I'm always open to discussing new projects, creative ideas, or
-              opportunities to be part of your visions. Let's build something
+              I&apos;m always open to discussing new projects, creative ideas, or
+              opportunities to be part of your visions. Let&apos;s build something
               scalable and intelligent together.
             </p>
           </div>
@@ -245,10 +245,10 @@ function Contact() {
                 <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-primary via-primary/60 to-transparent" />
                 <div className="mb-6">
                   <p className="font-body-md text-on-surface leading-relaxed opacity-90 italic text-sm">
-                    "I specialize in building scalable products and modern
-                    software engineering solutions. Whether it's a complex web
-                    application or a streamlined tool, I'm here to help you ship
-                    faster and better."
+                    &quot;I specialize in building scalable products and modern
+                    software engineering solutions. Whether it&apos;s a complex web
+                    application or a streamlined tool, I&apos;m here to help you ship
+                    faster and better.&quot;
                   </p>
                 </div>
                 <div className="pt-4 border-t border-outline-variant/30">
