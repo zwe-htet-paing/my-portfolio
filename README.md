@@ -12,18 +12,22 @@ Personal portfolio site for Zwe Htet Paing — AI/ML Engineer. Built with Next.j
 ## Development
 
 ```bash
-npm install
-npm run dev      # http://localhost:3000
+make install
+make dev         # http://localhost:3000
 ```
 
 ## Commands
 
 ```bash
-npm run dev      # Dev server with HMR
-npm run build    # Production build to .next/
-npm run start    # Serve the production build
-npm run lint     # ESLint
+make install     # npm install
+make dev         # Dev server with HMR
+make build       # Production build to .next/
+make start       # Serve the production build
+make lint        # ESLint
+make clean       # rm -rf .next
 ```
+
+Package manager is npm (pinned via `packageManager` in `package.json`); the `Makefile` wraps its scripts.
 
 ## Structure
 
@@ -53,7 +57,7 @@ src/
     theme.css           # Tailwind v4 @theme design tokens
 public/
   profile.png
-  resume.pdf
+  Zwe-Htet-Paing-CV-AIML.pdf
   favicon.svg
 ```
 

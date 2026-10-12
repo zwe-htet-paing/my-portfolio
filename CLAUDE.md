@@ -4,65 +4,84 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Personal portfolio site for Zwe Htet Paing (AI/ML Engineer). Single-page React app with three routes (About, Projects, Contact), styled with Tailwind utility classes against a dark/obsidian design system. Static content — no backend, no API calls, no global state.
+Personal portfolio site for Zwe Htet Paing (AI/ML Engineer) — `zwehtetpaing.dev`. Three routes (About, Projects, Contact) built on Next.js App Router, styled with Tailwind CSS v4 against a dark/obsidian design system. Static content — no backend, no database, no API routes.
 
 ## Commands
 
+Use `make`, not `npm run`, directly:
+
 ```bash
-npm run dev       # Vite dev server with HMR (default: http://localhost:5173)
-npm run build     # Production build to dist/
-npm run preview   # Preview the production build
-npm run lint      # ESLint (flat config, React Hooks + react-refresh rules)
+make install      # npm install
+make dev          # Next.js dev server with HMR (http://localhost:3000)
+make build        # Production build to .next/
+make start        # Serve the production build
+make lint         # ESLint (flat config, eslint-config-next)
+make clean        # rm -rf .next
 ```
+
+Package manager is **npm**, pinned via `packageManager` in `package.json`. The `Makefile` at the repo root wraps the npm scripts — always invoke it that way rather than calling `npm run <script>` directly.
 
 No test runner is configured. There is no separate "single test" command.
 
 ## Tech Stack
 
-- **React 19.2** + **React Router DOM 6.24** (BrowserRouter with 3 routes)
-- **Vite 8** with `@vitejs/plugin-react`
-- **Tailwind utility classes** — note: there is no `tailwind.config.js` in the repo. Custom utility classes (e.g. `font-headline-xl`, `bg-surface-container`, `text-on-surface`, `px-gutter`, `card-glow`, `glass-card`, `obsidian-card`, `timeline-node`, `terminal-badge`, `animate-fade-up`) are referenced throughout the components but are NOT defined locally. They rely on a precompiled stylesheet that is not in this codebase — adding new pages will require either (a) the stylesheet to be present, or (b) replacing these classes with standard Tailwind utilities.
-- **Material Symbols Outlined** icon font (loaded via Google Fonts CDN in the rendered HTML — not in `index.html` head, so add the link if icons don't render).
-- **ESLint 10** flat config (`eslint.config.js`) with `@eslint/js` recommended + React Hooks + react-refresh.
+- **Next.js 16** (App Router) + **React 19**
+- **Tailwind CSS v4** via `@tailwindcss/postcss` — design tokens defined with `@theme` in `src/styles/theme.css` (no `tailwind.config.js`; v4 is CSS-first)
+- Path alias `@/*` → `src/*` (`jsconfig.json`)
+- **Geist** and **JetBrains Mono** fonts, plus **Material Symbols Outlined** icon font, loaded via Google Fonts `<link>` tags in `src/app/layout.jsx` (not next/font)
+- **ESLint 9** flat config (`eslint.config.mjs`) using `eslint-config-next/core-web-vitals`
+- Deployed on **Vercel** (`vercel.json` pins `framework: nextjs`) — push to `main` triggers a deployment
+- **CI**: GitHub Actions (`.github/workflows/ci.yml`) runs `make lint` + `make build` on PRs and pushes to `main`. Lint errors fail CI — escape `'`/`"` in JSX text (`&apos;`, `&quot;`)
 
 ## File Layout
 
-```
+```text
 src/
-  main.jsx              # React entry; mounts <App /> in StrictMode
-  App.jsx               # Router + 3 <Route> elements
-  App.css               # Unused by current pages (left over from Vite template)
-  index.css             # Global CSS variables (light/dark theme tokens, font stacks)
+  app/
+    layout.jsx          # Root layout — fonts, inline theme-init script, AnimatedBackground
+    page.jsx            # "/" — About
+    projects/page.jsx   # "/projects"
+    contact/page.jsx    # "/contact"
   components/
-    Portfolio.jsx       # Route "/" — hero, tech stack grid, experience timeline, education
-    Projects.jsx        # Route "/projects" — header + 1 example project card grid
-    Contact.jsx         # Route "/contact" — 2-col layout (form + info cards)
-  assets/               # hero.png, react.svg, vite.svg (template leftovers)
+    Layout.jsx           # Shared page wrapper (Header + Footer)
+    Header.jsx           # Sticky nav, mobile drawer — uses next/link
+    Footer.jsx
+    Portfolio.jsx         # About page content
+    Projects.jsx          # Projects grid with pagination
+    Contact.jsx            # Contact form + info sidebar
+    AnimatedBackground.jsx # Canvas particle background
+    ThemeToggle.jsx
+    Container.jsx
+  hooks/
+    useTheme.js
+    useScrollReveal.js
+    useReducedMotion.js
+    useLowPowerDevice.js
+  styles/
+    theme.css            # Tailwind v4 @theme design tokens (source of truth for colors/type/spacing)
 public/
-  favicon.svg, icons.svg
+  profile.png, profile-light.png, profile-dark.png, Zwe-Htet-Paing-CV-AIML.pdf, favicon.svg
 ```
 
 ## Architecture Notes
 
-- **Routing**: `App.jsx` is the only place routes are declared. To add a page, create a component in `src/components/` and add a `<Route>` in `App.jsx`. Existing in-page links use plain `<a href="/path">` rather than `<Link>` — this triggers a full page reload. Consider switching to React Router `<Link>` for client-side navigation.
-- **Shared layout is duplicated**: the nav `<header>` and `<footer>` are copy-pasted across all three components. A `Layout` wrapper component would be a natural refactor.
-- **Contact form** (`Contact.jsx`) currently has no real submission handler — `onSubmit` calls `alert('Message sent successfully!')`. Treat the form as visual-only until a backend is wired up.
-- **Image assets** are hosted externally at `lh3.googleusercontent.com/aida-public/...` URLs (Stitch-generated placeholders). Replace with real assets when available.
-- **No TypeScript**: project is plain JSX. `@types/react` is in devDependencies but unused.
+- **Routing**: App Router — a page lives at `src/app/<route>/page.jsx`. To add a route, create that file and wrap its content in `<Layout>`.
+- **Client components**: `AnimatedBackground`, `Contact`, `Header`, `Portfolio`, `Projects`, and `ThemeToggle` are all `"use client"` (state, effects, or browser APIs). Keep new interactive components client-side explicitly; don't assume server-component defaults.
+- **Navigation** already uses `next/link` (`Header.jsx`) — no plain `<a href>` internal links to fix.
+- **Theme**: dark/light is applied via a `class` on `<html>`, set by an inline `beforeInteractive` script in `layout.jsx` reading `localStorage.theme` (avoids FOUC). `useTheme.js` handles runtime toggling; `ThemeToggle.jsx` is the UI control.
+- **Contact form** (`Contact.jsx`) has no real submission handler — `onSubmit` calls `alert('Message sent successfully!')`. Treat it as visual-only until a backend/API route is wired up.
+- **No TypeScript**: project is plain JSX (`.jsx`, not `.tsx`).
 
 ## Skills Available
 
 Project-local skills in `.claude/skills/` (managed via `skills-lock.json`):
 
-- **frontend-design** — for building new pages/components with the dark, editorial aesthetic already established (distinctive fonts, color tokens, motion). The `index.css` defines the canonical theme tokens (`--text`, `--text-h`, `--bg`, `--accent`, etc.) — match new components to this palette.
-- **react-components** (Stitch) — for converting Stitch-generated designs into modular Vite/React components. Uses `scripts/validate.js` for AST-based validation and `scripts/fetch-stitch.sh` for system-level networking.
+- **frontend-design** — for building new pages/components matching the established dark, editorial aesthetic. `src/styles/theme.css` is the canonical source of design tokens — match new components to it.
+- **react-components** (Stitch) — for converting Stitch-generated designs (see `.stitch/*.html`) into modular Next.js/React components.
 
-When the user asks to design a new page, prefer invoking the `frontend-design` skill — it carries the design-thinking guidance that the existing components already follow.
+When the user asks to design a new page, prefer invoking the `frontend-design` skill.
 
 ## Gotchas
 
-- `DESIGN.md` exists but is empty. If asked to follow it, surface that it's a stub.
-- The Vite template's `App.css` is still imported via `App.jsx` indirectly through `index.css`-style tokens, but the CSS classes it defines (`.counter`, `.hero`, `#center`, `#next-steps`, etc.) are leftover from the default Vite + React starter and are not used by the actual portfolio pages. Don't waste time modifying it for the portfolio.
-- `.claude/settings.local.json` contains an API key in plain text. Don't echo it back, don't commit it. (It's already covered by `.gitignore`-style local-only config but worth being aware of.)
-</content>
-</invoke>
+- `DESIGN.md` documents the design system (Obsidian Developer Core) in prose/frontmatter form — it is populated, not a stub. Treat it as the design spec when styling new UI, alongside `src/styles/theme.css` as the implementation source of truth.
+- `.claude/settings.local.json` may contain locally-scoped credentials. Don't echo its contents back, don't commit it — it's already excluded via `.gitignore` (`.claude/`).
