@@ -94,8 +94,8 @@ function Header({ activePath }) {
           <div className="flex items-center gap-3">
             <ThemeToggle />
             <a
-              href="/resume.pdf"
-              download="Zwe-Htet-Paing-Resume.pdf"
+              href="/Zwe-Htet-Paing-CV-AIML.pdf"
+              download="Zwe-Htet-Paing-CV-AIML.pdf"
               className="hidden sm:inline-flex items-center gap-1.5 bg-primary text-on-primary font-label-code text-sm font-bold px-[20px] py-[8px] rounded-full hover:brightness-110 active:scale-95 transition-all"
             >
               Resume
@@ -156,8 +156,8 @@ function MobileDrawer({ open, onClose, links, current }) {
           })}
           <li className="mt-4 sm:hidden">
             <a
-              href="/resume.pdf"
-              download="Zwe-Htet-Paing-Resume.pdf"
+              href="/Zwe-Htet-Paing-CV-AIML.pdf"
+              download="Zwe-Htet-Paing-CV-AIML.pdf"
               className="flex w-full items-center justify-center gap-1.5 bg-primary text-on-primary font-label-code text-sm font-bold px-[20px] py-[10px] rounded-full hover:brightness-110 active:scale-95 transition-all"
             >
               Resume

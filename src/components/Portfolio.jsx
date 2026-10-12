@@ -11,7 +11,7 @@ import useScrollReveal from '../hooks/useScrollReveal.js'
  * Structure:
  *  - Hero: 12-col grid, 7/5 split (text + portrait), 24px gap, items-start
  *  - Tech Stack: 1/2/3-col grid of 6 themed groups
- *  - Experience: vertical timeline, 5 entries, line centered on md+,
+ *  - Experience: vertical timeline (EXPERIENCE), line centered on md+,
  *    alternating via `md:order-1/2` on a 2-col grid
  *  - Education: single glass card with decorative school icon
  *
@@ -24,6 +24,102 @@ import useScrollReveal from '../hooks/useScrollReveal.js'
  * so backgrounds/borders paint edge-to-edge while the inner content
  * never stretches past 1200px.
  */
+// Ordered newest first; card alignment alternates by index.
+const EXPERIENCE = [
+  {
+    period: 'Dec 2025 — Present',
+    role: 'AI Software Engineer',
+    company: 'iSocialize',
+    location: 'Japan (Remote)',
+    type: 'Freelance',
+    highlights: [
+      'Shipped an MCP server connecting the social marketplace to ChatGPT, opening the platform to third-party AI integrations.',
+      'Built n8n workflows automating AI content operations end-to-end, and packaged backend APIs as custom n8n nodes for fully automated posting.',
+      'Used agentic coding to refactor existing code to production quality with consistent cross-device rendering.',
+    ],
+    stack: ['MCP', 'n8n', 'OpenAI', 'Agentic Coding'],
+  },
+  {
+    period: 'Oct 2025 — Jan 2026',
+    role: 'Python Developer',
+    company: 'Arculem LLC',
+    location: 'US (Remote)',
+    type: 'Freelance',
+    highlights: [
+      'Contributed to a full-stack algorithmic trading platform covering strategy development, bot execution, and portfolio monitoring, with each live bot isolated in its own Docker container.',
+      'Built a market-data pipeline ingesting live trades, order books, and open interest from 8+ exchanges, serving derived candles, CVD, and order-book state to strategies.',
+      'Built a context service unifying on-chain, macro, and TradFi data from 11 providers behind a single API.',
+      'Designed a research lab that turns detected trading signals into an audited training dataset via a sync → label → review → adjudicate pipeline.',
+    ],
+    stack: ['Python', 'FastAPI', 'PostgreSQL', 'Redis Streams', 'Docker', 'React'],
+  },
+  {
+    period: 'Dec 2024 — Jun 2025',
+    role: 'Python Developer',
+    company: 'QP Signal',
+    location: 'Bangkok, Thailand',
+    type: 'Freelance',
+    highlights: [
+      'Built a Django + Plotly dashboard for signal performance analysis.',
+      'Expanded the signal data pool with a Telegram listener accepting user-submitted channels.',
+      'Fused on-chain Solana data from PumpFun, DexScreener, and BirdEye into a single token-intelligence pipeline.',
+    ],
+    stack: ['Python', 'Django', 'Plotly', 'Telegram API', 'Solana'],
+  },
+  {
+    period: 'Jul 2024 — Sep 2024',
+    role: 'AI Software Developer',
+    company: 'B4Purpose',
+    location: 'France (Remote)',
+    type: 'Contract',
+    highlights: [
+      'Automated ESG report generation by unifying per-section scripts into a single end-to-end LLM pipeline, replacing manual assembly.',
+      'Scaled the pipeline to handle multiple concurrent reports by refactoring the architecture and integrating a relational database.',
+    ],
+    stack: ['LLMs', 'Prompt Engineering', 'Python', 'SQL'],
+  },
+  {
+    period: 'Dec 2022 — Apr 2024',
+    role: 'AI/ML Engineer',
+    company: 'PROMES Myanmar',
+    location: 'Yangon, Myanmar',
+    type: 'Full-time',
+    highlights: [
+      "Pioneered an end-to-end Burmese NLP pipeline (ASR, NER, sentiment analysis) — the team's first solution for a low-resource language.",
+      'Automated data ingestion across 3 sources (community, social media, lottery), eliminating manual collection entirely.',
+      'Cut manual reporting effort by 50% by automating Excel workflows with Python.',
+      'Designed and deployed backend APIs that scaled cleanly as data volume grew.',
+    ],
+    stack: ['Python', 'NLP', 'Speech Recognition', 'openpyxl', 'APIs'],
+  },
+  {
+    period: 'Dec 2021 — Nov 2022',
+    role: 'Data Scientist',
+    company: 'Bagan Innovation Technology',
+    location: 'Yangon, Myanmar',
+    type: 'Full-time',
+    highlights: [
+      'Drove a sustained 10% month-over-month lift in user engagement through recurring insight reporting.',
+      'Built sentiment analysis, topic modeling, and NER models on social media and e-commerce data to inform product decisions.',
+      'Improved Burmese ASR accuracy on Bagan Keyboard by adapting Kaldi language models and training a new ESPnet model.',
+    ],
+    stack: ['NLP', 'Kaldi', 'ESPnet', 'Topic Modeling'],
+  },
+  {
+    period: 'Nov 2020 — Jun 2021',
+    role: 'AI/ML Engineer (Junior)',
+    company: 'METRO Computer Myanmar',
+    location: 'Yangon, Myanmar',
+    type: 'Full-time',
+    highlights: [
+      'Co-built deep learning models for human activity recognition, from research through deployment.',
+      'Owned large-scale data pipelines end-to-end: collection, preprocessing, and annotation.',
+      'Fine-tuned classifiers to improve benchmark accuracy.',
+    ],
+    stack: ['Deep Learning', 'Computer Vision', 'Data Annotation'],
+  },
+]
+
 function Portfolio() {
   useScrollReveal('.reveal')
 
@@ -39,7 +135,7 @@ function Portfolio() {
                 <span className="relative inline-flex w-2 h-2 rounded-full bg-green-500" />
               </span>
               <span className="font-label-code text-xs text-primary/80">
-                $ whoami --location "Bangkok, Thailand"
+                $ whoami --location &quot;Bangkok, Thailand&quot;
               </span>
             </div>
           </div>
@@ -51,7 +147,7 @@ function Portfolio() {
               letterSpacing: '0.15em',
             }}
           >
-            Hi, I'm
+            Hi, I&apos;m
           </p>
 
           <h1 className="min-w-0 text-hero text-white uppercase mb-3 lg:col-start-1 lg:row-start-3">
@@ -177,49 +273,8 @@ function Portfolio() {
           <div className="relative">
             <div className="timeline-line timeline-line-md" />
 
-            {[
-              {
-                period: 'Dec 2025 — Present',
-                role: 'Software Engineer',
-                company: 'iSocialize | Japan (Remote)',
-                description:
-                  'Engineered n8n automation workflows for AI-powered content generation. Implemented an MCP server enabling seamless integration between social marketplace and ChatGPT.',
-                align: 'left',
-              },
-              {
-                period: 'Jul 2024 — Sep 2024',
-                role: 'AI Software Developer',
-                company: 'B4Purpose | France (Remote)',
-                description:
-                  'Built an ESG report generation pipeline using prompt engineering and LLMs, automating a previously manual reporting process and improving system throughput.',
-                align: 'right',
-              },
-              {
-                period: 'Dec 2022 — Apr 2024',
-                role: 'AI/ML Engineer',
-                company: 'PROMES Myanmar | Yangon, Myanmar',
-                description:
-                  'Automated collection and processing of community and social media data. Prototyped a Burmese NLP pipeline covering NER, sentiment analysis, and speech recognition.',
-                align: 'left',
-              },
-              {
-                period: 'Dec 2021 — Nov 2022',
-                role: 'Data Scientist',
-                company: 'BIT | Yangon',
-                description:
-                  'Developed NLP models for sentiment analysis and topic modeling. Improved Burmese speech-to-text accuracy through language model adaptation.',
-                align: 'right',
-              },
-              {
-                period: 'Nov 2020 — Jun 2021',
-                role: 'AI/ML Engineer (Junior)',
-                company: 'METRO Computer Myanmar | Yangon',
-                description:
-                  'Co-developed computer vision models for human activity recognition using deep learning. Managed large-scale data collection.',
-                align: 'left',
-              },
-            ].map((entry) => {
-              const isLeft = entry.align === 'left'
+            {EXPERIENCE.map((entry, i) => {
+              const isLeft = i % 2 === 0
               // Right-aligned entries swap the visual order of period and
               // card so the period sits on the left of the line and the
               // card sits on the right.
@@ -227,7 +282,7 @@ function Portfolio() {
               const orderCard = isLeft ? 'md:order-2' : 'md:order-1'
               return (
                 <div
-                  key={entry.role}
+                  key={entry.company}
                   className="relative mb-8 last:mb-0"
                 >
                   {/* Node — exactly on the line at 50% on md+ */}
@@ -252,27 +307,45 @@ function Portfolio() {
 
                     {/* Card.
                         Mobile: 48px left padding to clear the vertical
-                        timeline. Desktop: 16px to sit close to the line. */}
+                        timeline. Desktop: 16px to sit close to the line.
+                        Content stays left-aligned on both sides so the
+                        highlight bullets read cleanly. */}
                     <div className={`pl-5 md:pl-4 ${orderCard}`}>
-                      <div
-                        className={`reveal glass-card card-glow p-4 md:p-6 rounded-lg border border-white/5 ${
-                          isLeft ? '' : 'md:text-right'
-                        }`}
-                      >
-                        <div className={`md:hidden mb-2 ${isLeft ? '' : 'text-left'}`}>
-                          <span className="font-label-code text-primary text-xs">
+                      <div className="reveal glass-card card-glow p-4 md:p-6 rounded-lg border border-white/5">
+                        <div className="flex flex-wrap items-center gap-2 mb-2">
+                          <span className="md:hidden font-label-code text-primary text-xs">
                             {entry.period}
+                          </span>
+                          <span className="bg-primary/20 text-primary text-[10px] font-bold px-3 py-1 rounded-full border border-primary/20 uppercase tracking-widest">
+                            {entry.type}
                           </span>
                         </div>
                         <h4 className="text-xl font-bold text-on-surface mb-1">
                           {entry.role}
                         </h4>
                         <p className="font-label-code text-xs text-primary mb-4">
-                          {entry.company}
+                          {entry.company} | {entry.location}
                         </p>
-                        <p className="text-on-surface-variant text-sm leading-relaxed">
-                          {entry.description}
-                        </p>
+                        <ul className="space-y-2 mb-4">
+                          {entry.highlights.map((item) => (
+                            <li
+                              key={item}
+                              className="relative pl-4 text-on-surface-variant text-sm leading-relaxed before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:rounded-full before:bg-primary/60"
+                            >
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                        <div className="flex flex-wrap gap-[6px]">
+                          {entry.stack.map((tech) => (
+                            <span
+                              key={tech}
+                              className="tag-chip font-label-code text-[11px] border border-outline-variant/20 text-on-surface-variant bg-surface-container/40 px-[10px] py-[4px] rounded-md hover:border-primary/50 hover:text-primary transition-colors cursor-default"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
