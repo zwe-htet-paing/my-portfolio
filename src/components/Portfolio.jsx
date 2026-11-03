@@ -33,12 +33,9 @@ const EXPERIENCE = [
     location: 'US (Remote)',
     type: 'Freelance',
     highlights: [
-      'Contributed to a full-stack algorithmic trading platform covering strategy development, bot execution, and portfolio monitoring, with each live bot isolated in its own Docker container.',
-      'Built a market-data pipeline ingesting live trades, order books, and open interest from 8+ exchanges, serving derived candles, CVD, and order-book state to strategies.',
-      'Built a context service unifying on-chain, macro, and TradFi data from 11 providers behind a single API.',
-      'Designed a research lab that turns detected trading signals into an audited training dataset via a sync → label → review → adjudicate pipeline.',
+      'Python backend development for a fintech client, contributing to data pipelines, backend services, and containerized deployment.',
     ],
-    stack: ['Python', 'FastAPI', 'PostgreSQL', 'Redis Streams', 'Docker', 'React'],
+    stack: ['Python', 'Docker'],
   },
   {
     period: 'Dec 2025 — Present',
