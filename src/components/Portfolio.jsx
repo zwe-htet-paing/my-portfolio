@@ -41,11 +41,11 @@ const EXPERIENCE = [
     stack: ['Python', 'FastAPI', 'PostgreSQL', 'Redis Streams', 'Docker', 'React'],
   },
   {
-    period: 'Dec 2025 — Jul 2026',
+    period: 'Dec 2025 — Present',
     role: 'AI Software Engineer',
     company: 'iSocialize',
     location: 'Japan (Remote)',
-    type: 'Freelance',
+    type: 'Part-time',
     highlights: [
       'Shipped an MCP server connecting the social marketplace to ChatGPT, opening the platform to third-party AI integrations.',
       'Built n8n workflows automating AI content operations end-to-end, and packaged backend APIs as custom n8n nodes for fully automated posting.',
