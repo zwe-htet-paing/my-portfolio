@@ -24,23 +24,10 @@ import useScrollReveal from '../hooks/useScrollReveal.js'
  * so backgrounds/borders paint edge-to-edge while the inner content
  * never stretches past 1200px.
  */
-// Ordered newest first; card alignment alternates by index.
+// Current roles first, then newest first; card alignment alternates by index.
 const EXPERIENCE = [
   {
-    period: 'Dec 2025 — Present',
-    role: 'AI Software Engineer',
-    company: 'iSocialize',
-    location: 'Japan (Remote)',
-    type: 'Freelance',
-    highlights: [
-      'Shipped an MCP server connecting the social marketplace to ChatGPT, opening the platform to third-party AI integrations.',
-      'Built n8n workflows automating AI content operations end-to-end, and packaged backend APIs as custom n8n nodes for fully automated posting.',
-      'Used agentic coding to refactor existing code to production quality with consistent cross-device rendering.',
-    ],
-    stack: ['MCP', 'n8n', 'OpenAI', 'Agentic Coding'],
-  },
-  {
-    period: 'Oct 2025 — Jan 2026',
+    period: 'Oct 2025 — Present',
     role: 'Python Developer',
     company: 'Arculem LLC',
     location: 'US (Remote)',
@@ -52,6 +39,19 @@ const EXPERIENCE = [
       'Designed a research lab that turns detected trading signals into an audited training dataset via a sync → label → review → adjudicate pipeline.',
     ],
     stack: ['Python', 'FastAPI', 'PostgreSQL', 'Redis Streams', 'Docker', 'React'],
+  },
+  {
+    period: 'Dec 2025 — Jul 2026',
+    role: 'AI Software Engineer',
+    company: 'iSocialize',
+    location: 'Japan (Remote)',
+    type: 'Freelance',
+    highlights: [
+      'Shipped an MCP server connecting the social marketplace to ChatGPT, opening the platform to third-party AI integrations.',
+      'Built n8n workflows automating AI content operations end-to-end, and packaged backend APIs as custom n8n nodes for fully automated posting.',
+      'Used agentic coding to refactor existing code to production quality with consistent cross-device rendering.',
+    ],
+    stack: ['MCP', 'n8n', 'OpenAI', 'Agentic Coding'],
   },
   {
     period: 'Dec 2024 — Jun 2025',
